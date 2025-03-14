@@ -10,7 +10,8 @@ class Options extends Model
 {
     protected $fillable = [
         'option_text',
-        'is_correct'
+        'is_correct',
+        'tes_minat_instrumen_id'
     ];
 
     public function TesMinatInstrumen(): BelongsTo

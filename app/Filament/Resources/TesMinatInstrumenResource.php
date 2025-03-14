@@ -6,10 +6,14 @@ use App\Filament\Resources\TesMinatInstrumenResource\Pages;
 use App\Filament\Resources\TesMinatInstrumenResource\RelationManagers;
 use App\Models\TesMinatInstrumen;
 use Filament\Forms;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -29,6 +33,11 @@ class TesMinatInstrumenResource extends Resource
                 TextInput::make('label')
                     ->required()
                     ->maxLength(255),
+
+                Select::make('section_id')
+                    ->relationship('section', 'name')
+                    ->searchable()
+                    ->preload()
             ]);
     }
 
@@ -36,10 +45,12 @@ class TesMinatInstrumenResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('label'),
             ])
             ->filters([
-                //
+                SelectFilter::make('section_id')
+                    ->label('Section')
+                    ->relationship('section', 'name')
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

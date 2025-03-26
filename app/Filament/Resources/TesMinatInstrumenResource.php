@@ -48,9 +48,7 @@ class TesMinatInstrumenResource extends Resource
                 TextColumn::make('label'),
             ])
             ->filters([
-                SelectFilter::make('section_id')
-                    ->label('Section')
-                    ->relationship('section', 'name')
+                //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

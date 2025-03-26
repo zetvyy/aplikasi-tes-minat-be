@@ -14,7 +14,7 @@ class Options extends Model
         'tes_minat_instrumen_id'
     ];
 
-    public function TesMinatInstrumen(): BelongsTo
+    public function tes_minat_instrumen(): BelongsTo
     {
         return $this->belongsTo(TesMinatInstrumen::class);
     }
